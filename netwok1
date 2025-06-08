@@ -1,0 +1,53 @@
+while true
+do
+    echo "1.evalyate"
+    echo "2.listing"
+    echo "3.copyimh"
+    echo "4.deny "
+    echo "5.to search"
+    read -p "enter ur choice:" choice
+    
+    case $choice in
+    1)
+       echo "result: $((100 + 10))"
+        ;;
+    2)
+        ls -l
+        ;;
+    3)
+        read -p "enter filename" src
+        read -p "enter destination file:" dest
+        if [ -f "$src" ];then
+            cp "$src""$dest"
+            echo "file copied"
+        else 
+            echo "source file not found"
+        fi
+        ;;
+        4)
+          read -p "Enter filename to deny read permission: " fname
+          if [ -f "$filename" ];then
+            chmod a-r "$fname"
+        else
+            echo "file not found"
+         fi
+         ;;
+              
+    5)
+        read-p "enter filename"filename
+        read-p "enter the pattern to search" pattern
+        if [ -f "$filename" ]; then
+            grep --color=always "$pattern" "$filename"
+        else
+            echo "file not found"
+        fi
+        ;;
+    6)
+        echo "exitinh"
+        break
+        ;;
+    *)
+        echo "invalid choice"
+        ;;
+    esac
+done
