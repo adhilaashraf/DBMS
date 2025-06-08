@@ -1,29 +1,8 @@
-validate_password(){
-    password=$1
-    
-    if [[ ${#password} -lt 8 ]];then
-        echo "pass ,ust ne grtr tan 8"
-        return 1
-    fi
-        
-    if ![[ $password =~ [A-Z] ]];then
-        echo "password mus contain caps"
-        return 1
-    fi
-     if ![[ $password =~ [a-z] ]];then
-        echo "password mus contain lower"
-        return 1
-    fi
-     if ![[ $password =~ [0-9] ]];then
-        echo "password mus contain caps"
-        return 1
-    fi
-     if ![[ $password =~ !/@/#/$/%/^/&/* ]];then
-        echo "password mus contain caps"
-        return 1
-    fi
-    echo "strong password"
-    return 0
-}
-read -sp "enter password" password
-validate_password$password
+read -p "Enter a string:" inp_str
+
+rev_str=$(echo "$inp_str" | rev)
+if [ "$inp_str" == "$rev_str" ]; then
+        echo "the string is palindrome"
+else
+        echo "the string is not palindrome"
+fi
