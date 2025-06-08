@@ -1,53 +1,58 @@
 while true
-do
-    echo "1.evalyate"
-    echo "2.listing"
-    echo "3.copyimh"
-    echo "4.deny "
-    echo "5.to search"
-    read -p "enter ur choice:" choice
+do 
+    echo "1.enter input:"
+    echo "2.create file using cat"
+    echo "3.view girst lines"
+    echo "4.copy fgile"
+    echo "5.couny no of lines"
+    echo "6.exit"
+    read -p "enter ur choice" choice
     
     case $choice in
+    
     1)
-       echo "result: $((100 + 10))"
+        read -p "enter the input:" input
+        echo "input:"$input
         ;;
-    2)
-        ls -l
+    2) 
+        read -p "enter filename" filename
+        echo "enter the contents:"
+        cat > "$filename"
+        echo "file '$filename' created"
         ;;
     3)
-        read -p "enter filename" src
-        read -p "enter destination file:" dest
-        if [ -f "$src" ];then
-            cp "$src""$dest"
-            echo "file copied"
-        else 
-            echo "source file not found"
+        read -p "enter filename:" filename
+        if [ -f "$filename" ];then
+            tail "$filename"
+        else
+         
+           echo "file not found"
         fi
         ;;
-        4)
-          read -p "Enter filename to deny read permission: " fname
-          if [ -f "$filename" ];then
-            chmod a-r "$fname"
+    4)
+        read -p "enter source filename" src
+        read -p "enter destination:"dest
+        if [ -f "$filename" ];then
+            cp"$src" "$dest"
+            echo "files copied"
         else
             echo "file not found"
-         fi
-         ;;
-              
+        fi
+        ;;
     5)
-        read-p "enter filename"filename
-        read-p "enter the pattern to search" pattern
-        if [ -f "$filename" ]; then
-            grep --color=always "$pattern" "$filename"
+        read -p " enter filename" filename
+         if [ -f "$filename" ];then
+            echo "lines:$(wc -l <"$filename")"
         else
             echo "file not found"
         fi
         ;;
     6)
-        echo "exitinh"
+        echo "exiting"
         break
         ;;
     *)
-        echo "invalid choice"
+        echo "invalid hoice"
         ;;
-    esac
+    esac
 done
