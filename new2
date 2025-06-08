@@ -1,0 +1,46 @@
+while true
+do  
+    echo "1.enter ur name"
+    echo "2.deny read"
+    echo "3.evaluate"
+    echo "4.join files"
+    echo "5. exiting"
+    read -p "enter ur choice" choice
+
+    case $choice in
+    1)
+        read -p "enter ur name" name
+        echo "hello,$name"
+        ;;
+    2)
+        
+        if [ -f "abc.txt" ];then
+            chmod a-rwx "abc.txt"
+            echo " denied"
+        else
+            echo "not found"
+        fi
+        ;;
+    3)
+        echo "result:$(( 20 * 30 ))"
+        ;;
+    4)
+        read -p "enter ur file1" file1
+        read -p "enter ur file2" file2
+        read -p "enter ur outout" file3
+        if [ -f "$file1" ] && [ -f "$file2" ];
+            cat "$file1" "$file2" > "$file3"
+            echo "files joined into into $file3"
+        else
+            echo "not"
+        fi
+        ;;
+    5)
+        echo "exiting"
+        break
+        ;;
+    *)
+        echo "invalid"
+        ;;
+    esac
+done
